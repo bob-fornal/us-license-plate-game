@@ -1,0 +1,123 @@
+header {
+  background-color: blue;
+  box-sizing: border-box;
+  color: white;
+  font-family: Arial;
+  font-size: 1rem;      
+  font-weight: bold;
+  line-height: 1rem;
+  padding: 1rem 0.5rem;
+  text-align: center;
+
+  position: fixed;
+
+  height: 4rem;
+  left: 0;
+  top: 0;
+  width: 100vw;
+
+  z-index: 1000;
+}
+
+.content {
+  margin-top: 4rem;
+  padding-top: 1rem;
+}
+
+.navigation {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  top: -0.25rem;
+}
+.navigation.center {
+  text-align: center;
+}
+
+.half {
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  width: 49%;
+}
+.half:not(:first-of-type) {
+  padding-right: 1rem;
+}
+.half:not(:last-of-type) {
+  padding-left: 1rem;
+}
+
+.btn {
+  border: 2px solid gray;
+  border-radius: 10px;
+  margin-top: 1rem;
+  padding: 1rem;
+  position: relative;
+}
+.btn.default {
+  background-color: #d3d3d3;
+  color: black;
+  font-family: Arial;
+  font-weight: bold;
+  text-decoration: none;
+}
+.btn.default .capital {
+  color: blue;
+  padding-left: 1em;  
+}
+.btn .found {
+  color: purple;
+  font-size: 2rem;
+  position: absolute;
+  right: 3rem;
+  top: 1rem;
+}
+.btn.default .add {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.65rem;
+}
+.btn.default .remove {
+  position: absolute;
+  right: 0.5rem;
+  top: 2.35rem;
+}
+.btn.default .add svg,
+.btn.default .remove svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.btn.non-selectable {
+  background-color: blue;
+  color: white;
+  font-family: Arial;
+  font-weight: bold;
+  text-decoration: none;
+}
+.btn.non-selectable .capital {
+  color: tan;
+  padding-left: 1em;
+}
+.btn.hidden {
+  background: transparent;
+  border: none;
+  display: inline-block;
+  text-decoration: none;
+}
+.btn.hidden svg {
+  height: 4rem;
+  width: 4rem;
+}
+
+.return {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.return svg {
+  fill: white;
+  height: 2rem;
+  padding: 1rem;      
+  width: 2rem;
+}

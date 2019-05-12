@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>United States License Plate Game</title>
+
+  <meta name="theme-color" content="#2196f3"/>
+
+  <link href="styles.css" rel="stylesheet" type="text/css" />
+  <style>
+    .item {
+      border-bottom: 3px solid silver;
+      font-family: Arial;
+      padding: 0.5rem;
+    }
+    .item:not(.first) {
+      padding: 1rem 0.5rem 0.75rem 0.5rem;      
+    }
+    .item .title {
+      color: blue;
+      font-weight: bold;
+      margin-bottom: 0.1rem;
+      text-transform: uppercase;
+    }
+    .item .subtitle {
+      font-weight: bold;
+    }
+    .item .subtitle.caution {
+      color: red;
+    }
+    .item .subtitle:not(.first) {
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="return" href="/">
+      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="459px" height="459px" viewBox="0 0 459 459" xml:space="preserve">
+        <g id="reply">
+          <path d="M178.5,140.25v-102L0,216.75l178.5,178.5V290.7c127.5,0,216.75,40.8,280.5,130.05C433.5,293.25,357,165.75,178.5,140.25z"></path>
+        </g>
+      </svg>     
+    </a>
+    <div>United States</div><div>License Plate Game</div>
+  </header>
+
+  <div class="content">
+    <div class="item first">
+      <div class="title">Description</div>
+      <div class="description">
+        This application is designed to allow individuals to track
+        the license plates they see while traveling.  All data is
+        stored on the local device.
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="title">Trip Titles</div>
+
+      <div class="subtitle first">Travel over Time</div>
+      <div class="description">
+        You might consider tracking something like the licence plates
+        see on the way to <span class="highlight">Work</span> ...
+      </div>
+
+      <div class="subtitle">Short Trips</div>
+      <div class="description">
+        Or, consider tracking a shorter trip and listing it as something
+        like <span class="highlight">2019-05-01 Delaware</span> ...
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="title">Scoring</div>
+
+      <div class="subtitle">Unique Number of States</div>
+      <div class="description">
+        Currently, only the unique number of states found is tracked.
+      </div>
+    </div>
+  
+    <div class="item last">
+      <div class="title">About ...</div>
+
+      <div class="subtitle first">Learning</div>
+      <div class="description">
+        This program is designed to teach state spelling, abbreviation,
+        capitals, and location.
+      </div>
+
+      <div class="subtitle caution">Caution</div>
+      <div class="description">
+        Please, do not use this application while driving.
+      </div>
+    </div>
+  
+    <div class="navigation center">
+      <a class="btn default" href="/">BACK</a>
+    </div>
+  </div>
+
+  <script>
+  </script>
+</body>
+</html>

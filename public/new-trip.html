@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>United States License Plate Game</title>
+
+  <meta name="theme-color" content="#2196f3"/>
+
+  <link href="styles.css" rel="stylesheet" type="text/css" />
+  <style>
+    .trip-name {
+      border-color: lightskyblue;
+      box-sizing: border-box;
+      margin: 1rem 1rem 0 1rem;
+      padding: 0.5rem;
+      width: calc(100% - 2rem);
+    }
+
+    .messages:empty {
+      height: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .messages:not(:empty) {
+      color: red;
+      font-family: Arial;
+      font-weight: bold;
+      padding: 1rem;
+    }
+
+    .states {
+      font-family: Arial;
+      padding-bottom: 1rem;      
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>United States</div><div>License Plate Game</div>
+  </header>
+
+  <div class="content">
+    <input id="trip-name" class="trip-name" placeholder="Trip Name" type="text" maxlength="50" />
+    <div id="messages" class="messages"></div>
+
+    <div class="states">
+      <label for="state-select">Default State:</label>
+      <select id="state-select">
+      </select>
+    </div>
+
+    <div class="navigation">
+      <div class="half">
+        <a class="btn default" href="/">CANCEL</a>
+      </div>
+      <div class="half">
+        <a class="btn default" href="#" onclick="save()">SAVE</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="storage.js"></script>
+  <script>
+    const storage = new Storage();
+    const stateData = storage.getStateList();
+    const stateSelector = document.getElementById('state-select');
+    
+    const defaultState = storage.getDefaultState();
+    if (defaultState !== null) {
+      setTimeout(() => {
+        stateSelector.value = defaultState;
+      });
+    }
+
+    let html = `<option value="">--Select an option--</option>\n`;
+    for (let state of stateData) {
+      html += `<option value="${state.abbreviation}">${state.state}</option>\n`;
+    }
+    stateSelector.innerHTML = html;
+
+    function save() {
+      const input = document.getElementById('trip-name');
+      const state = document.getElementById('state-select');
+      const tripName = input.value;
+      const defaultState = state.value;
+
+      if (tripName.length > 0 && defaultState.length > 0) {
+        if (storage.getItem(tripName) !== null) {
+          tripExistsMessage();
+        } else {
+          storage.startTrip(tripName, defaultState);
+          window.location.href = '/';
+        }
+      }
+    }
+
+    function tripExistsMessage() {
+      const messages = document.getElementById('messages');
+      const message = "Trip already exists ...";
+      messages.innerText = message;
+    }
+  </script>
+</body>
+</html>
