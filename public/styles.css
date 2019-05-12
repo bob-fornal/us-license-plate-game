@@ -55,11 +55,17 @@ header {
   position: relative;
 }
 .btn.default {
-  background-color: #d3d3d3;
-  color: black;
   font-family: Arial;
   font-weight: bold;
   text-decoration: none;
+}
+.btn.default:not(.highlight) {
+  background-color: #d3d3d3;
+  color: black;
+}
+.btn.default.highlight {
+  background-color: #00aa00;
+  color: white;
 }
 .btn.default .capital {
   color: blue;

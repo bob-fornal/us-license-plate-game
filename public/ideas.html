@@ -33,6 +33,10 @@
     .item .subtitle:not(.first) {
       margin-top: 0.5rem;
     }
+
+    .item .description:not(.list) {
+      padding-left: 1.5rem;
+    }
   </style>
 </head>
 <body>
@@ -96,10 +100,25 @@
         Please, do not use this application while driving.
       </div>
     </div>
-  
-    <div class="navigation center">
-      <a class="btn default" href="/">BACK</a>
+
+    <div class="item last">
+      <div class="title">Installation</div>
+
+      <div class="subtitle first">iOS</div>
+      <div class="description list">
+        <ol>
+          <li>Tap the Share Button in Safari for the PWA.</li>
+          <li>Tap the icon labeled Add to Home Screen.</li>
+          <li>Tap Add in the upper right corner.</li>
+        </ol>
+      </div>
+
+      <div class="subtitle">Android</div>
+      <div class="description">
+        A web install prompt should display.
+      </div>
     </div>
+    
   </div>
 
   <script>
