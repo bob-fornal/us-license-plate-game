@@ -1,7 +1,7 @@
 // In your service worker
 importScripts('cache.adderall.js');
 
-const cachename = 'v1';
+const cachename = 'v2';
 
 const STATIC_ASSETS = [
   '/',
@@ -10,7 +10,6 @@ const STATIC_ASSETS = [
   'cache.adderall.js.map',
   'favicon.ico',
   'manifest.json',
-  'storage.js',
 
   'images/icons/icon-72x72.png',
   'images/icons/icon-96x96.png',
@@ -26,6 +25,7 @@ const MUTABLE_ASSETS = [
   'ideas.html',
   'index.html',
   'service-worker.js',
+  'storage.js',
   'new-trip.html',
   'styles.css'
 ];
