@@ -18,6 +18,39 @@
 
   <link href="styles.css" rel="stylesheet" type="text/css" />
   <style>
+    @media screen and (orientation: landscape) {
+      header {
+        display: inline-block;
+        width: 50vw;
+      }
+      .states-map {
+        width: 45vw;
+        display: inline-block;
+        position: fixed;
+        z-index: 100;
+      }
+      .states-map-background {
+        background-color: lightgoldenrodyellow;
+        display: inline-block;
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 50vw;
+        z-index: 0;
+      }
+
+      .states-list {
+        left: 51.5vw;
+        position: absolute;
+        width: 47vw;        
+      }
+    }
+    @media screen and (orientation: portrait) {
+      .states-map-background {
+        display: none;
+      }
+    }
     .states-map {
       background-color: lightslategrey;      
       border: 2px solid blue;
@@ -43,6 +76,7 @@
     <div>United States</div><div>License Plate Game</div>
   </header>
 
+  <div class="states-map-background"></div>
     
   <div class="states-map">
     <svg
@@ -195,7 +229,7 @@
     }
 
     function selectDefaultState() {
-      window.scrollTo(0,0);
+      // window.scrollTo(0,0);
     }
 
     function showStateSelected(stateAbbreviation) {
@@ -211,13 +245,13 @@
       storage.addToState(stateAbbreviation);
       stateData = storage.getStateData(active);
       showStateData();
-      window.scrollTo(0,0);
+      // window.scrollTo(0,0);
     }
     function removeState(stateAbbreviation) {
       storage.removeFromState(stateAbbreviation);
       stateData = storage.getStateData(active);
       showStateData();
-      window.scrollTo(0,0);
+      // window.scrollTo(0,0);
     }
   </script>
 </body>

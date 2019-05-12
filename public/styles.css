@@ -34,17 +34,38 @@ header {
   text-align: center;
 }
 
-.half {
+.fixed-half {
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
   width: 49%;
 }
-.half:not(:first-of-type) {
+.fixed-half:not(:first-of-type) {
   padding-right: 1rem;
 }
-.half:not(:last-of-type) {
+.fixed-half:not(:last-of-type) {
   padding-left: 1rem;
+}  
+
+@media screen and (orientation: portrait) {
+  .half {
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    width: 49%;
+  }
+  .half:not(:first-of-type) {
+    padding-right: 1rem;
+  }
+  .half:not(:last-of-type) {
+    padding-left: 1rem;
+  }  
+}
+@media screen and (orientation: landscape) {
+  .half {
+    box-sizing: border-box;
+    text-align: center;
+  }
 }
 
 .btn {

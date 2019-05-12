@@ -14,6 +14,17 @@
     .selections {
       margin-top: 4rem;
     }
+    @media screen and (orientation: landscape) {
+      .selections {
+        display: inline-block;
+        left: 0;
+        position: fixed;
+        top: 0;        
+        width: 18vw;
+      }
+
+
+    }
     .selections .tip {
       color: gray;
       font-family: Arial;
@@ -25,6 +36,16 @@
       bottom: 0;
       box-sizing: border-box;
       padding: 1rem;
+    }
+
+    @media screen and (orientation: landscape) {
+      .trips {
+        display: inline-block;
+        left: 17.5vw;
+        margin-top: 4rem;
+        position: relative;
+        width: 80vw;
+      }
     }
 
     .trip {
