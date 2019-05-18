@@ -138,7 +138,6 @@ class Storage {
     for (let trip of allTrips) {
       let max = 0;
       const tripData = this.getItem(trip.name);
-      console.log({ trip, tripData });
       if (!tripData.hasOwnProperty('USA')) {
         tripData.USA = 0;
       }
