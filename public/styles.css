@@ -60,7 +60,10 @@ header {
   position: absolute;
   top: 2rem;
 }
-.navigation.center {
+.choice {
+  margin-top: 2rem;
+}
+.center {
   text-align: center;
 }
 
