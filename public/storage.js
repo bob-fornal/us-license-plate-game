@@ -1,22 +1,15 @@
 class Storage {
+  ACTIVETRIP() {
+    return 'ACTIVE-TRIP';
+  }
   ALLTRIPSNAME() {
     return 'ALL-TRIPS-ARRAY';
   }
   DEFAULTSTATEABBREVIATION() {
     return 'DEFAULT-STATE-ABBREVIATION';
   }
-  ACTIVETRIP() {
-    return 'ACTIVE-TRIP';
-  }
-  TRIPBASEDATA() {
-    const tripData = {
-      "AL": 0, "AK": 0, "AZ": 0, "AR": 0, "CA": 0, "CO": 0, "CT": 0, "DE": 0, "FL": 0, "GA": 0,
-      "HI": 0, "IA": 0, "ID": 0, "IL": 0, "IN": 0, "KS": 0, "KY": 0, "LA": 0, "ME": 0, "MD": 0,
-      "MA": 0, "MI": 0, "MN": 0, "MS": 0, "MO": 0, "MT": 0, "NE": 0, "NV": 0, "NH": 0, "NJ": 0,
-      "NM": 0, "NY": 0, "NC": 0, "ND": 0, "OH": 0, "OK": 0, "OR": 0, "PA": 0, "RI": 0, "SC": 0,
-      "SD": 0, "TN": 0, "TX": 0, "UT": 0, "VT": 0, "VA": 0, "WA": 0, "WV": 0, "WI": 0, "WY": 0
-    };
-    return tripData;
+  DEFAULTSTATEPROPERTY() {
+    return '_DEFAULT_STATE';
   }
   STATEBASEDATA() {
     let stateData = [
@@ -63,6 +56,7 @@ class Storage {
       { "abbreviation": "SD", "state": "South Dakota", "capital": "Pierre", "found": 0 },
       { "abbreviation": "TN", "state": "Tennessee", "capital": "Nashville", "found": 0 },
       { "abbreviation": "TX", "state": "Texas", "capital": "Austin", "found": 0 },
+      { "abbreviation": "USA", "state": "United States", "capital": "District of Columbia", "found": 0 },
       { "abbreviation": "UT", "state": "Utah", "capital": "Salt Lake City", "found": 0 },
       { "abbreviation": "VT", "state": "Vermont", "capital": "Montpelier", "found": 0 },
       { "abbreviation": "VA", "state": "Virginia", "capital": "Richmond", "found": 0 },
@@ -72,6 +66,17 @@ class Storage {
       { "abbreviation": "WY", "state": "Wyoming", "capital": "Cheyenne", "found": 0 }
     ].sort(this.sortCompareState.bind(this));
     return stateData;
+  }
+  TRIPBASEDATA() {
+    const tripData = {
+      "_DEFAULT_STATE": "",
+      "AL": 0, "AK": 0, "AZ": 0, "AR": 0, "CA": 0, "CO": 0, "CT": 0, "DE": 0, "FL": 0, "GA": 0,
+      "HI": 0, "IA": 0, "ID": 0, "IL": 0, "IN": 0, "KS": 0, "KY": 0, "LA": 0, "ME": 0, "MD": 0,
+      "MA": 0, "MI": 0, "MN": 0, "MS": 0, "MO": 0, "MT": 0, "NE": 0, "NV": 0, "NH": 0, "NJ": 0,
+      "NM": 0, "NY": 0, "NC": 0, "ND": 0, "OH": 0, "OK": 0, "OR": 0, "PA": 0, "RI": 0, "SC": 0,
+      "SD": 0, "TN": 0, "TX": 0, "USA": 0, "UT": 0, "VT": 0, "VA": 0, "WA": 0, "WV": 0, "WI": 0, "WY": 0
+    };
+    return tripData;
   }
 
   sortCompareName(a, b) {
@@ -95,6 +100,7 @@ class Storage {
     return comparison;
   }
 
+  // Simple Item Patterns
   getItem(item) {
     const result = localStorage.getItem(item);
     return (result === null) ? null : JSON.parse(result);
@@ -106,9 +112,15 @@ class Storage {
     return localStorage.removeItem(item);
   }
 
+  // Trip Functions
   startTrip(tripName, defaultState) {
     this.addToTrips(tripName);
+    
+    let tripData = this.TRIPBASEDATA();
+    tripData.USA = 0;
+    tripData[this.DEFAULTSTATEPROPERTY()] = defaultState;
     this.setItem(tripName, this.TRIPBASEDATA());
+
     this.setItem(this.DEFAULTSTATEABBREVIATION(), defaultState);
   }
   getDefaultState() {
@@ -120,12 +132,42 @@ class Storage {
     this.setItem(this.ALLTRIPSNAME(), allTripsData.sort(this.sortCompareName.bind(this)));
   }
   getAllTrips() {
-    return this.getItem(this.ALLTRIPSNAME()) || [];
+    let allTrips = this.getItem(this.ALLTRIPSNAME()) || [];
+    const defaultState = this.getItem(this.DEFAULTSTATEABBREVIATION);
+
+    for (let trip of allTrips) {
+      let max = 0;
+      const tripData = this.getItem(trip.name);
+      console.log({ trip, tripData });
+      if (!tripData.hasOwnProperty('USA')) {
+        tripData.USA = 0;
+      }
+      if (!tripData.hasOwnProperty(this.DEFAULTSTATEPROPERTY())) {
+        tripData[this.DEFAULTSTATEPROPERTY()] = defaultState;
+      }
+      for (let state in tripData) {
+        if (state !== this.DEFAULTSTATEPROPERTY()) {
+          max += tripData[state];
+        }
+      }
+      trip.max = max;
+      this.setItem(trip.name, tripData);
+    }
+    this.setItem(this.ALLTRIPSNAME(), allTrips);
+    return allTrips;
   }
   setActiveTrip(tripName) {
     return this.setItem(this.ACTIVETRIP(), tripName);
   }
   getActiveTrip() {
+    let tripData = this.TRIPBASEDATA();
+    if (!tripData.hasOwnProperty('USA')) {
+      tripData.USA = 0;
+    }
+    if (!tripData.hasOwnProperty('USA')) {
+      tripData[this.DEFAULTSTATEPROPERTY()] = this.getDefaultState();
+    }
+
     return this.getItem(this.ACTIVETRIP());
   }
   deleteTrip(tripName) {
@@ -148,8 +190,17 @@ class Storage {
     const counts = this.getItem(tripName);
     let stateData = this.STATEBASEDATA();
 
+    if (!counts.hasOwnProperty('USA')) {
+      counts.USA = 0;
+    }
+    if (!counts.hasOwnProperty(this.DEFAULTSTATEPROPERTY())) {
+      counts[this.DEFAULTSTATEPROPERTY()] = this.getDefaultState();
+    }
+
     for (let state of stateData) {
-      state.found = counts[state.abbreviation];
+      if (state.abbreviation !== this.DEFAULTSTATEPROPERTY()) {
+        state.found = counts[state.abbreviation];
+      }
     }
 
     return stateData;

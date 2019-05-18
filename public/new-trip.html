@@ -38,25 +38,30 @@
   </style>
 </head>
 <body>
-  <header>
-    <div>United States</div><div>License Plate Game</div>
-  </header>
 
-  <div class="content">
-    <input id="trip-name" class="trip-name" placeholder="Trip Name" type="text" maxlength="50" />
-    <div id="messages" class="messages"></div>
+  <div class="parent-wrapper">
+    <header>
+      <a class="return" href="/">
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="459px" height="459px" viewBox="0 0 459 459" xml:space="preserve">
+          <g id="reply">
+            <path d="M178.5,140.25v-102L0,216.75l178.5,178.5V290.7c127.5,0,216.75,40.8,280.5,130.05C433.5,293.25,357,165.75,178.5,140.25z"></path>
+          </g>
+        </svg>     
+      </a>
+      <div>United States</div><div>License Plate Game</div>
+    </header>
 
-    <div class="states">
-      <label for="state-select">Default State:</label>
-      <select id="state-select">
-      </select>
-    </div>
+    <div class="content">
+      <input id="trip-name" class="trip-name" placeholder="Trip Name" type="text" maxlength="50" />
+      <div id="messages" class="messages"></div>
 
-    <div class="navigation">
-      <div class="fixed-half">
-        <a class="btn default" href="/">CANCEL</a>
+      <div class="states">
+        <label for="state-select">Default State:</label>
+        <select id="state-select">
+        </select>
       </div>
-      <div class="fixed-half">
+
+      <div class="navigation center">
         <a class="btn default highlight" href="#" onclick="save()">SAVE</a>
       </div>
     </div>
@@ -67,6 +72,7 @@
     const storage = new Storage();
     const stateData = storage.getStateList();
     const stateSelector = document.getElementById('state-select');
+    const trips = storage.getAllTrips();
     
     const defaultState = storage.getDefaultState();
     if (defaultState !== null) {
@@ -85,7 +91,6 @@
       const input = document.getElementById('trip-name');
       const state = document.getElementById('state-select');
       const tripName = input.value;
-      const defaultState = state.value;
 
       if (tripName.length > 0 && defaultState.length > 0) {
         if (storage.getItem(tripName) !== null) {

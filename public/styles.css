@@ -1,3 +1,38 @@
+@media screen
+  and (min-device-width: 768px) {
+    body {
+      margin: 0;
+    }
+
+    .parent-wrapper {
+      height: 100vh;
+      margin: 0 auto;
+      position: relative;
+      width: 768px;
+    }
+    header {
+      position: absolute;
+    }
+}
+@media screen
+  and (max-device-width: 767px) {
+    body {
+      margin: 0;
+    }
+
+    .parent-wrapper {
+      height: 100%;
+      left: 0;
+      overflow: auto;
+      position: fixed;
+      top: 0;
+      width: 100vw;
+    }
+    header {
+      position: fixed;
+    }
+}
+
 header {
   background-color: blue;
   box-sizing: border-box;
@@ -9,26 +44,21 @@ header {
   padding: 1rem 0.5rem;
   text-align: center;
 
-  position: fixed;
-
   height: 4rem;
   left: 0;
   top: 0;
-  width: 100vw;
+  width: 100%;
 
   z-index: 1000;
 }
 
 .content {
-  margin-top: 4rem;
-  padding-top: 1rem;
+  padding-top: 5rem;
 }
 
 .navigation {
-  margin-top: 0.75rem;
-  margin-bottom: 0.5rem;
-  position: relative;
-  top: -0.25rem;
+  position: absolute;
+  top: 2rem;
 }
 .navigation.center {
   text-align: center;
@@ -50,19 +80,25 @@ header {
 @media screen and (orientation: portrait) {
   .half {
     box-sizing: border-box;
-    display: inline-block;
     text-align: center;
-    width: 49%;
   }
-  .half:not(:first-of-type) {
-    padding-right: 1rem;
+  .left {
+    box-sizing: border-box;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
   }
-  .half:not(:last-of-type) {
-    padding-left: 1rem;
-  }  
+  .right {
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+  }
 }
 @media screen and (orientation: landscape) {
-  .half {
+  .half, .left, .right {
     box-sizing: border-box;
     text-align: center;
   }
@@ -132,13 +168,17 @@ header {
   display: inline-block;
   text-decoration: none;
 }
-.btn.hidden svg {
+.half .btn.hidden svg {
   height: 4rem;
   width: 4rem;
 }
+.left .btn.hidden svg {
+  height: 3rem;
+  width: 3rem;
+}
 
 .return {
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
 }
