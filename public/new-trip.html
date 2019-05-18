@@ -89,14 +89,14 @@
 
     function save() {
       const input = document.getElementById('trip-name');
-      const state = document.getElementById('state-select');
       const tripName = input.value;
+      const state = stateSelector.value;
 
-      if (tripName.length > 0 && defaultState.length > 0) {
+      if (tripName.length > 0 && state.length > 0) {
         if (storage.getItem(tripName) !== null) {
           tripExistsMessage();
         } else {
-          storage.startTrip(tripName, defaultState);
+          storage.startTrip(tripName, state);
           window.location.href = '/';
         }
       }

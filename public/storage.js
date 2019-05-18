@@ -119,7 +119,7 @@ class Storage {
     let tripData = this.TRIPBASEDATA();
     tripData.USA = 0;
     tripData[this.DEFAULTSTATEPROPERTY()] = defaultState;
-    this.setItem(tripName, this.TRIPBASEDATA());
+    this.setItem(tripName, tripData);
 
     this.setItem(this.DEFAULTSTATEABBREVIATION(), defaultState);
   }
@@ -150,6 +150,7 @@ class Storage {
         }
       }
       trip.max = max;
+      trip.defaultState = tripData[this.DEFAULTSTATEPROPERTY()];
       this.setItem(trip.name, tripData);
     }
     this.setItem(this.ALLTRIPSNAME(), allTrips);
@@ -159,14 +160,6 @@ class Storage {
     return this.setItem(this.ACTIVETRIP(), tripName);
   }
   getActiveTrip() {
-    let tripData = this.TRIPBASEDATA();
-    if (!tripData.hasOwnProperty('USA')) {
-      tripData.USA = 0;
-    }
-    if (!tripData.hasOwnProperty('USA')) {
-      tripData[this.DEFAULTSTATEPROPERTY()] = this.getDefaultState();
-    }
-
     return this.getItem(this.ACTIVETRIP());
   }
   deleteTrip(tripName) {
@@ -197,12 +190,11 @@ class Storage {
     }
 
     for (let state of stateData) {
-      if (state.abbreviation !== this.DEFAULTSTATEPROPERTY()) {
-        state.found = counts[state.abbreviation];
-      }
+      state.found = counts[state.abbreviation];
     }
 
-    return stateData;
+    console.log(counts);
+    return { stateData, defaultState: counts[this.DEFAULTSTATEPROPERTY()] };
   }
 
   addToState(stateAbbreviation) {

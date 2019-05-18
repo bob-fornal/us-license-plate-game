@@ -62,6 +62,10 @@
       white-space: nowrap;
       width: 100%;
     }
+    .display .state {
+      color: orangered;
+      margin-left: 1rem;
+    }
     .display .statistics {
       color: purple;
       margin-left: 1rem;
@@ -159,7 +163,7 @@
         html += `<div class="trip btn default">\n`;
         html += `  <div class="display" onclick="startTrip('${trip.name}')">\n`;
         html += `    <div class="name">${trip.name}</div>\n`;
-
+        html += `    <div class="state">Default State: ${trip.defaultState}</div>\n`;
         let countText = '';
         if (trip.found === 0) {
           countText = '(NOT STARTED)';

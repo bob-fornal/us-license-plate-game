@@ -12,8 +12,7 @@
   <script>
     const storage = new Storage();
     const active = storage.getActiveTrip();
-    let stateData = storage.getStateData(active);
-    const defaultState = storage.getDefaultState();
+    let { defaultState, stateData } = storage.getStateData(active);
     const defaultStateProperty = storage.DEFAULTSTATEPROPERTY();
   </script>
 
@@ -169,7 +168,7 @@
       let html = '';
       for (let state of stateData) {
         if (state !== defaultStateProperty) {
-          const isDefaultState = state.abbreviation === defaultState;
+          const isDefaultState = (state.abbreviation === defaultState);
 
           if (isDefaultState) {
             html += `<div id="selectable-${state.abbreviation}" class="btn non-selectable" onclick="selectDefaultState()">\n`;
@@ -255,13 +254,15 @@
 
     function addState(stateAbbreviation) {
       storage.addToState(stateAbbreviation);
-      stateData = storage.getStateData(active);
+      const data = storage.getStateData(active);
+      stateData = data.stateData;
       showStateData();
       // window.scrollTo(0,0);
     }
     function removeState(stateAbbreviation) {
       storage.removeFromState(stateAbbreviation);
-      stateData = storage.getStateData(active);
+      const data = storage.getStateData(active);
+      stateData = data.stateData;
       showStateData();
       // window.scrollTo(0,0);
     }
