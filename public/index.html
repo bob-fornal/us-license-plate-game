@@ -11,7 +11,11 @@
 
   <link href="styles.css" rel="stylesheet" type="text/css" />
   <style>
+    body {
+      background-color: lightsteelblue;
+    }
     .selections {
+      background-color: white;
       margin-top: 4rem;
       position: relative;
     }
@@ -160,7 +164,7 @@
 
       let html = '';
       for (let trip of trips) {
-        html += `<div class="trip btn default">\n`;
+        html += `<div class="trip btn default effect-jelena">\n`;
         html += `  <div class="display" onclick="startTrip('${trip.name}')">\n`;
         html += `    <div class="name">${trip.name}</div>\n`;
         html += `    <div class="state">Default State: ${trip.defaultState}</div>\n`;

@@ -54,7 +54,7 @@
     .states-map {
       background-color: lightslategrey;      
       border: 2px solid blue;
-      margin-top: 5em;
+      margin: 5em 1rem 1rem 1rem;
       padding: 1em 0 1em 1em;
     }
     #us-map {
@@ -207,7 +207,7 @@
     function getAddIcon(stateAbbreviation) {
       let html = '';
 
-      html += `  <span class="add" onclick="addState('${stateAbbreviation}')">\n`;
+      html += `  <span class="add effect-jelena" onclick="addState('${stateAbbreviation}')">\n`;
       html += `  <svg version="1.1" id="Capa_1"\n`;
       html += `    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"\n`;
       html += `    x="0px" y="0px" width="93.934px" height="93.934px" viewBox="0 0 93.934 93.934" xml:space="preserve">\n`;
@@ -225,7 +225,7 @@
     function getRemoveIcon(stateAbbreviation) {
       let html = '';
 
-      html += `  <span class="remove" onclick="removeState('${stateAbbreviation}')">\n`;
+      html += `  <span class="remove effect-jelena" onclick="removeState('${stateAbbreviation}')">\n`;
       html += `  <svg version="1.1" id="Capa_1"\n`;
       html += `    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"\n`;
       html += `    x="0px" y="0px" width="79.536px" height="79.536px" viewBox="0 0 79.536 79.536" xml:space="preserve">\n`;

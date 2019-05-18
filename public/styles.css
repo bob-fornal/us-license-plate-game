@@ -1,9 +1,8 @@
+body {
+  margin: 0;
+}
 @media screen
   and (min-device-width: 768px) {
-    body {
-      margin: 0;
-    }
-
     .parent-wrapper {
       height: 100vh;
       margin: 0 auto;
@@ -16,10 +15,6 @@
 }
 @media screen
   and (max-device-width: 767px) {
-    body {
-      margin: 0;
-    }
-
     .parent-wrapper {
       height: 100%;
       left: 0;
@@ -190,4 +185,73 @@ header {
   height: 2rem;
   padding: 1rem;      
   width: 2rem;
+}
+
+.item {
+  border-bottom: 3px solid silver;
+  font-family: Arial;
+  padding: 0.5rem;
+}
+.item:not(.first) {
+  padding: 1rem 0.5rem 0.75rem 0.5rem;      
+}
+.item .title {
+  color: blue;
+  font-weight: bold;
+  margin-bottom: 0.1rem;
+  text-transform: uppercase;
+}
+.item .subtitle {
+  font-weight: bold;
+}
+.item .subtitle.caution {
+  color: red;
+}
+.item .subtitle:not(.first) {
+  margin-top: 0.5rem;
+}
+
+.item .description:not(.list) {
+  padding-left: 1.5rem;
+}
+.item .description:not(:first-of-type) {
+  padding-top: 0.5rem;
+}
+
+/* Individual Effects */
+
+/* Jelena */
+.effect-jelena::after {
+	border: 2px solid rgba(111,148,182,0.5);
+}
+
+.effect-jelena.click::after {
+	-webkit-animation: anim-effect-jelena 0.3s ease-out forwards;
+	animation: anim-effect-jelena 0.3s ease-out forwards;
+}
+
+@-webkit-keyframes anim-effect-jelena {
+	0% {
+		opacity: 1;
+		-webkit-transform: scale3d(0.5, 0.5, 1);
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	to {
+		opacity: 0;
+		-webkit-transform: scale3d(1.2, 1.2, 1);
+		transform: scale3d(1.2, 1.2, 1);
+	}
+}
+
+@keyframes anim-effect-jelena {
+	0% {
+		opacity: 1;
+		-webkit-transform: scale3d(0.5, 0.5, 1);
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	to {
+		opacity: 0;
+		-webkit-transform: scale3d(1.2, 1.2, 1);
+		transform: scale3d(1.2, 1.2, 1);
+	}
 }

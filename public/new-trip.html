@@ -99,6 +99,8 @@
           storage.startTrip(tripName, state);
           window.location.href = '/';
         }
+      } else {
+        tripMissingInformationMessage();
       }
     }
 
@@ -107,6 +109,12 @@
       const message = "Trip already exists ...";
       messages.innerText = message;
     }
-  </script>
+
+    function tripMissingInformationMessage() {
+      const messages = document.getElementById('messages');
+      const message = "Trip missing name or state ...";
+      messages.innerText = message;
+    }
+</script>
 </body>
 </html>
