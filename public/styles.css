@@ -211,11 +211,30 @@ header {
   margin-top: 0.5rem;
 }
 
-.item .description:not(.list) {
+.item .description:not(.list):not(.image) {
   padding-left: 1.5rem;
 }
 .item .description:not(:first-of-type) {
   padding-top: 0.5rem;
+}
+
+.item .description.image a.svg {
+  display: inline-block;
+  margin-left: 14%;
+  position: relative;
+  width: 70%;
+}
+.item .description.image a.svg:after {
+  content: ""; 
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left:0;
+}
+.item .description.image object {
+  width: 100%;
 }
 
 /* Individual Effects */

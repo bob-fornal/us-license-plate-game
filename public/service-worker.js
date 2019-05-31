@@ -1,7 +1,7 @@
 // In your service worker
 importScripts('cache.adderall.js');
 
-const cachename = 'v10';
+const cachename = 'v11';
 
 const STATIC_ASSETS = [
   '/',
@@ -11,6 +11,7 @@ const STATIC_ASSETS = [
   'favicon.ico',
   'manifest.json',
 
+  'images/Bob-and-Patrick.svg',
   'images/icons/icon-72x72.png',
   'images/icons/icon-96x96.png',
   'images/icons/icon-128x128.png',
